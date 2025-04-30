@@ -1,7 +1,10 @@
+import { Link } from "react-router-dom";
+
 export default function Header(){
     return( 
-        <header>
-            <h1 className="bg-[#FF00FF] text-3xl">Header</h1>
+        <header className="bg-yellow-400">
+            <Link to="/"> Home </Link>
+            <Link to ='/login'>Login</Link>
         </header>
     )
 }
