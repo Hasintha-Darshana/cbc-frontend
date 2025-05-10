@@ -1,15 +1,30 @@
-import { useState } from "react"
+
+import {useState}from "react";
+import mediaUpload from "../utils/mediaUpload";
 
 export default function TestPage() {
-    const [count, setCount] = useState(0)
-    return(
-        <div className="w-full h-screen flex items-center justify-center">
-            <div className="w-[450px] h-[250px] shadow flex items-center justify-center ">
-                <button onClick={()=> {setCount(count-1)}} className="bg-blue-400 text-white font-bold text-center w-[100px] h-[40px] text-[20px] cursor-pointer">-</button>
-                <span className="text-[20px] font-bold text-center w-[100px] h-[40px] mx-[10px] flex items-center justify-center">{count}</span>
-                <button onClick={() => {setCount(count+1)}} className="bg-blue-400 text-white font-bold text-center w-[100px] h-[40px] text-[20px] cursor-pointer">+</button>
-            </div>
+    const[image, setImage] = useState(null);
 
+    function imageUpload(){
+       mediaUpload(image).then(
+        (res)=>{
+            console.log(res)
+        }
+       ).catch(
+         (res)=>{
+            console.log(res)
+         }
+       )
+    }
+   
+    return(
+        <div className="w-full h-screen flex items-center justify-center ">
+           <input type = "file" className="file-input file-input-bordered w-full max-w-xs" onChange={
+            (e)=>{
+                setImage(e.target.files[0]);
+            }
+           }></input>
+            <button onClick={imageUpload} className="font-bold bg-green-500 text-white py-2 px-4 rounded">Upload</button>
         </div>
     )
 }
