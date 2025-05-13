@@ -14,12 +14,12 @@ function App() {
       <div>
         <Toaster position='top-right' />
           <Routes path = "/*">
-            <Route path = '/' element = {<HomePage/>}/>
+            
             <Route path = '/signup' element ={<RegisterPage/>}/>
             <Route path = '/login' element = {<LoginPage/>}/>
             <Route path = '/admin/*' element = {<AdminPage />}/>
             <Route path ='/testing' element ={<TestPage/>}/>
-            <Route path='/*' element= {<h1>Not Found</h1>} />
+            <Route path='/*' element= {<HomePage/>} />
           </Routes>
           
       </div>
