@@ -3,6 +3,7 @@ import AddProductPage from "./admin/addProductPage";
 import AdminProductPage from "./admin/productPage";
 import EditProductPage from "./admin/editProduct";
 
+
 export default function AdminPage(){
     return(
         <div className="w-full h-screen  flex ">

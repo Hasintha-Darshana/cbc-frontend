@@ -5,6 +5,7 @@ import toast from "react-hot-toast"
 import { useParams } from "react-router-dom"
 import ImageSlider from "../../components/imageSlider"
 import Loading from "../../components/loading"
+import { addToCart, getCart } from "../../utils/cart"
 
 export default function ProductOverviewPage() {
     const params = useParams()
@@ -53,12 +54,34 @@ export default function ProductOverviewPage() {
                             <h1 className="w-full text-center my-2 text-md text-gray-600 font-semibold">{product.productId}</h1>
                             <p className="w-full text-center my-2 text-md text-gray-600 font-semibold">{product.description}</p>
                             {
-                                product.labeledPrice > product.price && 
+                                product.labeledPrice > product.price ? 
                                <div>
                                     <span className="text-4xl mx-4 text-gray-500 line-through">{product.labeledPrice.toFixed(2)}</span>
                                     <span className="text-4xl mx-4 font-bold text-accent">{product.price.toFixed(2)}</span>
                                 </div>
+                                :
+                                <span className="text-4xl mx-4 font-bold text-accent">{product.price.toFixed(2)}</span>
                             }
+                            <div className="w-full flex justify-center items-center mt-4">
+                                <button className="w-[200px] h-[50px] bg-accent text-white rounded-3xl font-semibold hover:bg-secondary transition-all duration-300 mx-4 cursor-pointer" onClick={
+                                    ()=>{
+                                        
+
+                                        console.log("old cart")
+                                        console.log(getCart())
+                                        addToCart(product,1)
+                                        console.log("new cart")
+                                        console.log(getCart())
+                                    }
+                                }>
+                                    Add to Cart
+                                </button>
+                                 <button className="w-[200px] h-[50px] bg-accent text-white rounded-3xl font-semibold hover:bg-secondary transition-all duration-300 mx-4 cursor-pointer">
+                                    Buy Now
+                                </button>
+                                
+
+                            </div>
                     
                         </div>
 
