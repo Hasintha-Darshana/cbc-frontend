@@ -2,7 +2,7 @@
 import axios from "axios"
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import ImageSlider from "../../components/imageSlider"
 import Loading from "../../components/loading"
 import { addToCart, getCart } from "../../utils/cart"
@@ -13,6 +13,7 @@ export default function ProductOverviewPage() {
     const [status, setStatus] = useState("loading")//loading, success, error
 
     const[product, setProduct] = useState(null)
+    const navigate = useNavigate()
 
     useEffect(
        ()=>{
@@ -66,7 +67,7 @@ export default function ProductOverviewPage() {
                                 <button className="w-[200px] h-[50px] bg-accent text-white rounded-3xl font-semibold hover:bg-secondary transition-all duration-300 mx-4 cursor-pointer" onClick={
                                     ()=>{
                                         
-
+                                
                                         console.log("old cart")
                                         console.log(getCart())
                                         addToCart(product,1)
@@ -76,7 +77,24 @@ export default function ProductOverviewPage() {
                                 }>
                                     Add to Cart
                                 </button>
-                                 <button className="w-[200px] h-[50px] bg-accent text-white rounded-3xl font-semibold hover:bg-secondary transition-all duration-300 mx-4 cursor-pointer">
+                                 <button className="w-[200px] h-[50px] bg-accent text-white rounded-3xl font-semibold hover:bg-secondary transition-all duration-300 mx-4 cursor-pointer" 
+                                 onClick={() => {
+										navigate("/checkout", {
+											state: {
+												cart: [
+													{
+														productId : product.productId,
+                                                        name : product.name,
+                                                        image: product.images[0],
+                                                        price : product.price,
+                                                        labeledPrice : product.labeledPrice,
+                                                        qty : 1
+													},
+												],
+                                            }
+                                        })
+                                    }
+                                }>
                                     Buy Now
                                 </button>
                                 

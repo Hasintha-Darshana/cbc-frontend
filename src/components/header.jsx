@@ -1,3 +1,4 @@
+import { RiShoppingCart2Fill } from "react-icons/ri";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Header(){
@@ -12,9 +13,15 @@ export default function Header(){
                 <Link to="/products" className="text-2xl font-bold mx-5">Products</Link>
                 <Link to="/about" className="text-2xl font-bold">About</Link>
                 <Link to="/contact" className="text-2xl font-bold mx-5">Contact</Link>
+               
                 
 
            </div>
+           <div className="w-[80px] h-full flex justify-center items-center">
+                 <Link to="/cart" className="text-2xl font-bold">
+                    <RiShoppingCart2Fill />
+                 </Link>
+            </div>
            
         </header>
     )
